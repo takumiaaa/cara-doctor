@@ -1,0 +1,51 @@
+.part-img {
+        background-image: url(back.png);
+        /* 画像のURLを指定       */
+        background-size: contain;
+        /* 画像のサイズを指定    */
+        width: 100%;
+        /* 横幅のサイズを指定    */
+        height: 100%;
+    }
+
+    .sample_box1 {
+        width: 320PX;
+        height: 570px;
+        border: solid 2px #000000;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /*線*/
+    }
+
+    .back{
+        background-image: url(背景.png);
+        background-size: cover;
+        width: 320px;
+        height: 570px;
+    }
+
+    .rogo {
+        width: 250px;
+        height: auto;
+        position: relative;
+        top: 140px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .start {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 250px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.start:active {
+        position: relative;
+        top: 255px;
+    }
