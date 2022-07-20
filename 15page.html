@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>15page</title>
+</head>
+<style>
+    .sample_box1 {
+        width: 320PX;
+        height: 570px;
+        border: solid 2px #000000;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /*線*/
+    }
+    .back{
+        background-image: url(背景.png);
+        background-size: cover;
+        width: 320px;
+        height: 570px;
+    }
+
+    .kusuri {
+        width: 180px;
+        height: auto;
+        position: relative;
+        top: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sikenkann {
+        width: 60px;
+        height: auto;
+        position: relative;
+        top: 80px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .furu {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 110px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.furu:active {
+        position: relative;
+        top: 113px;
+    }
+
+    .tugi {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -250px;
+        left: 50px;
+    }
+
+    img.tugi:active {
+        position: relative;
+        top: -247px;
+    }
+
+    .tugi2 {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -250px;
+        left: 50px;
+    }
+
+    img.tugi2:active {
+        position: relative;
+        top: -247px;
+    }
+
+    .mazeru {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -170px;
+        left: -160px;
+    }
+
+    img.mazeru:active {
+        position: relative;
+        top: -167px;
+    }
+    .furu {
+        width: 100px;
+        height: auto;
+        position: relative;
+        top: -230px;
+        left: 45px;
+    }
+    
+
+    #v {
+        border: 1px solid #fff;
+        width: 300px;
+        height: 200px;
+        margin: 0%;
+        background-color: #fff;
+    }
+
+    input[type=range] {
+        width: 300px;
+    }
+
+    #colorInfo2 {
+        position: relative;
+        /* background-color: yellowgreen; */
+        border: 1px solid transparent;
+        height: 84px;
+        width: 52px;
+        top: -184px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #colorInfo1 {
+        position: relative;
+        /* background-color: aqua; */
+        border: 1px solid transparent;
+        border-bottom-right-radius: 10px 20px;
+        border-bottom-left-radius: 10px 20px;
+        height: 86px;
+        width: 52px;
+        top: -10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    #colorInfo3 {
+        position: relative;
+        border: 1px solid transparent;
+        border-bottom-right-radius: 10px 20px;
+        border-bottom-left-radius: 10px 20px;
+        height: 172px;
+        width: 52px;
+        top: -270px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<script>
+    //各RGBを格納するグローバル変数を定義しました
+    let G_colorData1_R;
+    let G_colorData1_G;
+    let G_colorData1_B;
+
+    let G_colorData2_R;
+    let G_colorData2_G;
+    let G_colorData2_B;
+
+    //async function data1() {
+    async function data1() {
+        let port;
+        try {
+            port = await navigator.serial.requestPort();
+            await port.open({ baudRate: 115200 });
+            while (port.readable) {
+                const reader = port.readable.getReader();
+                try {
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) {
+                            addSerial("Canceled\n");
+                            break;
+                        }
+                        const inputValue = new TextDecoder().decode(value);
+                        addSerial(inputValue);
+                    }
+                } catch (error) {
+                    addSerial("Error: Read" + error + "\n");
+                } finally {
+                    reader.releaseLock();
+                }
+            }
+        }
+        catch (error) {
+            addSerial("Error: Open" + error + "\n");
+        }
+
+
+        function addSerial(msg) {
+            var textarea = document.getElementById('outputArea');
+            let colorInfo1 = document.getElementById("colorInfo1");
+            let data = msg.split(",");
+
+            if (data.length === 3) {
+                let colorData1 = { R: data[0], G: data[1], B: data[2] };
+                colorData1.R = 204;
+                colorData1.G = 255;
+                colorData1.B = 153;
+                colorInfo1.style.backgroundColor = `rgba(${colorData1.R},${colorData1.G},${colorData1.B},1)`;
+                G_colorData1_R = colorData1.R;
+                G_colorData1_G = colorData1.G;
+                G_colorData1_B = colorData1.B;
+            }
+        }
+    }
+
+    //onclickからの値を引数で読み込むために少し変えています．シリアルから読み込む時は変更不要　井上
+    async function data2() {
+        let port;
+        try {
+            port = await navigator.serial.requestPort();
+            await port.open({ baudRate: 115200 });
+            while (port.readable) {
+                const reader = port.readable.getReader();
+                try {
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) {
+                            addSerial("Canceled\n");
+                            break;
+                        }
+                        const inputValue = new TextDecoder().decode(value);
+                        addSerial(inputValue);
+                    }
+                } catch (error) {
+                    addSerial("Error: Read" + error + "\n");
+                } finally {
+                    reader.releaseLock();
+                }
+            }
+        } catch (error) {
+            addSerial("Error: Open" + error + "\n");
+        }
+
+
+
+
+
+        function addSerial(msg) {
+            var textarea = document.getElementById('outputArea');
+            let colorInfo2 = document.getElementById("colorInfo2");
+            let data = msg.split(",");
+
+
+            if (data.length === 3) {
+                let colorData2 = { R: data[0], G: data[1], B: data[2] };
+                colorData2.R = 255;
+                colorData2.G = 153;
+                colorData2.B = 204;
+                colorInfo2.style.backgroundColor = `rgba(${colorData2.R},${colorData2.G},${colorData2.B},1)`
+                console.log(colorData2.B);
+
+                //2回目のデータをグローバル変数に格納
+                G_colorData2_R = colorData2.R;
+                G_colorData2_G = colorData2.G;
+                G_colorData2_B = colorData2.B;
+            }
+
+        }
+    }
+
+
+    //ここのコメントアウトを外しました
+    function data3() {
+        let colorInfo3 = document.getElementById("colorInfo3");
+
+        //グローバル変数から混色を作成
+        //Math.floor関数で整数部分のみ使う
+        //Numberで文字型から数値型へ変換
+        colorData3_R = Math.floor((Number(G_colorData1_R) + Number(G_colorData2_R)) - 255);
+        colorData3_G = Math.floor((Number(G_colorData1_G) + Number(G_colorData2_G)) - 255);
+        colorData3_B = Math.floor((Number(G_colorData1_B) + Number(G_colorData2_B)) - 255);
+
+
+        //配列ではなく，変数に変更
+        colorInfo3.style.backgroundColor = `rgba(${colorData3_R},${colorData3_G},${colorData3_B},1)`
+
+
+        console.log(colorData3_R);
+        console.log(colorData3_G);
+        console.log(colorData3_B);
+
+    }
+
+    function data4(){
+        let C = 204;
+        let m = 153;
+        let y = 102;
+        // c=204,m=153,y=102 ペンタ君の場合の正解値
+        var target = document.getElementById("sample")
+
+        if(C == Math.floor((Number(G_colorData1_R) + Number(G_colorData2_R)) - 255) && m == Math.floor((Number(G_colorData1_G) + Number(G_colorData2_G)) - 255) && y == Math.floor((Number(G_colorData1_B) + Number(G_colorData2_B)) - 255)){
+            target.href = "19page.html";
+        }
+        else{
+            target.href = "20page.html";
+        }
+    }
+
+
+</script>
+
+<body>
+    <div class="sample_box1">
+        <div class="back">
+        <img class="kusuri" src="15ページ\dai mei 15.png">
+        <img class="sikenkann" src="15ページ\sikennkann 15.png">
+        <div id="colorInfo1"></div>
+        <div id="colorInfo2"></div>
+        <div id="colorInfo3"></div>
+
+        <input class="tugi" type="image" src="12ページ\12ページ\tugihe 12.png"
+            onclick="data1()">
+        <input class="tugi2" type="image" src="12ページ\12ページ\tugihe 12.png"
+            onclick="data2()">
+        <input class="mazeru" type="image" src="14ページ\14ページ\mazeru 14.png"
+            onclick="data3()">
+        <a id="sample" href="http://www.yahoo.co.jp"><input class="furu"type="image" src="15ページ\huru 15.png" onclick="data4()"></a>
+        </div>
+    </div>
+</body>
+
+</html>

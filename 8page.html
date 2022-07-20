@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>8page</title>
+</head>
+<style>
+    .sample_box1 {
+        width: 320PX;
+        height: 570px;
+        border: solid 2px #000000;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        /*線*/
+    }
+    .back{
+        background-image: url(背景.png);
+        background-size: cover;
+        width: 320px;
+        height: 570px;
+    }
+
+    .kusuri {
+        width: 180px;
+        height: auto;
+        position: relative;
+        top: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .penta {
+        width: 180px;
+        height: auto;
+        position: relative;
+        top: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hudou {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .sasaki {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 120px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .start1 {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.start1:active {
+        position: relative;
+        top: 163px;
+    }
+
+    .modoru1 {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 170px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.modoru1:active {
+        position: relative;
+        top: 173px;
+    }
+
+    .start2 {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 140px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.start2:active {
+        position: relative;
+        top: 143px;
+    }
+
+    .modoru2 {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 150px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.modoru2:active {
+        position: relative;
+        top: 153px;
+    }
+
+    .start3 {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.start3:active {
+        position: relative;
+        top: 163px;
+    }
+
+    .modoru3 {
+        width: 150px;
+        height: auto;
+        position: relative;
+        top: 170px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    img.modoru3:active {
+        position: relative;
+        top: 173px;
+    }
+
+</style>
+
+<body>
+    <div class="sample_box1">
+    <div class="back">
+
+        <img class="kusuri" src="8ページ\8ページ\dai mei 8.png">
+        <script lang="ja">
+            img=new Array();
+            var link = new Array();
+            link [0] = "9page.html";
+            img[0] = "8ページ/8ページ/aono penta 8.png";
+            link [1] = "9page-hudou.html";
+            img[1] = "8ページ/8ページ/hudou 8.png";
+            link [2] = "9page-sasaki.html";
+            img[2] = "8ページ/8ページ/sasaki 8.png";
+
+            
+
+            x = Math.floor(Math.random() * img.length);
+            if(x == 0){
+            document.write("<img class=penta src='" + img[x] +"' >");
+                document.write('<A href=' + link[x] + '>' + "<img class=start1 src='8ページ/8ページ/start 8.png"  +"'>"+ '</A>');
+                document.write('<A href=7page.html' + '>' + "<img class=modoru1 src='8ページ/8ページ/modoru 8.png" +"'>"+ '</A>');
+            }
+            else if(x == 1){
+            document.write("<img class=hudou src='" + img[x] +"' >");
+                document.write('<A href=' + link[x] + '>' + "<img class=start2 src='8ページ/8ページ/start 8.png"  +"'>"+ '</A>');
+                document.write('<A href=7page.html' + '>' + "<img class=modoru2 src='8ページ/8ページ/modoru 8.png" +"'>"+ '</A>');
+            }
+            else if(x == 2){
+            document.write("<img class=sasaki src='" + img[x] +"' >");
+                document.write('<A href=' + link[x] + '>' + "<img class=start3 src='8ページ/8ページ/start 8.png"  +"'>"+ '</A>');
+                document.write('<A href=7page.html' + '>' + "<img class=modoru3 src='8ページ/8ページ/modoru 8.png" +"'>"+ '</A>');
+            }
+            </script>
+
+    </div>
+    </div>
+</body>
+
+</html>
